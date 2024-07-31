@@ -16,4 +16,6 @@ mono_crash.*.json
 
 # Unnecesary Files
 *.aseprite
+**/*.aseprite
+**/*.tff
 *.tff
