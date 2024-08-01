@@ -1,7 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4dmjuknaxkxs"]
+[gd_scene load_steps=3 format=3 uid="uid://b4dmjuknaxkxs"]
 
 [ext_resource type="PackedScene" uid="uid://dnmmlpglt0gwy" path="res://scenes/characters/Player.tscn" id="1_405un"]
+[ext_resource type="PackedScene" uid="uid://mteiecl10116" path="res://scenes/rooms/Room_base.tscn" id="2_8i2f0"]
 
 [node name="Game" type="Node2D"]
+y_sort_enabled = true
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_405un")]
+position = Vector2(160, 160)
+collision_mask = 3
+
+[node name="Room_base" parent="." instance=ExtResource("2_8i2f0")]

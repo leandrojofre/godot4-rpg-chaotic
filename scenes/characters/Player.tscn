@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnmmlpglt0gwy"]
+[gd_scene load_steps=10 format=3 uid="uid://dnmmlpglt0gwy"]
 
 [ext_resource type="Script" path="res://scripts/characters/player/Player.gd" id="1_ab3oa"]
-[ext_resource type="Texture2D" uid="uid://bcgj8hy56cle8" path="res://aseprite/characters/_base.png" id="1_ok42r"]
-[ext_resource type="Script" path="res://scripts/characters/player/Player_animation.gd" id="3_q80no"]
+[ext_resource type="Texture2D" uid="uid://bcgj8hy56cle8" path="res://assets/characters/_base.png" id="1_ok42r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1osy2"]
 atlas = ExtResource("1_ok42r")
@@ -43,7 +42,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -57,24 +56,26 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_au55d"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4rp0d"]
+size = Vector2(18, 18)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 texture_filter = 1
 script = ExtResource("1_ab3oa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_61tbp")
-animation = &"run"
+animation = &"idle"
 autoplay = "idle"
-script = ExtResource("3_q80no")
+frame_progress = 0.357276
+offset = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_4rp0d")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -32)
 zoom = Vector2(2, 2)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -8)
-shape = SubResource("CircleShape2D_au55d")
