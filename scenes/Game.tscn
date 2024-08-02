@@ -14,4 +14,30 @@ collision_mask = 3
 [node name="Room_base" parent="." instance=ExtResource("2_ijx2x")]
 
 [node name="Enemy_base" parent="." instance=ExtResource("3_l8ykf")]
-position = Vector2(736, 256)
+position = Vector2(736, 224)
+markersNodes = Array[NodePath]([NodePath("PathOrigin"), NodePath("Marker2D-1"), NodePath("Marker2D-2"), NodePath("Marker2D-3"), NodePath("Marker2D-4"), NodePath("Marker2D-5"), NodePath("Marker2D-6"), NodePath("Marker2D-7")])
+loop_in_circles = true
+
+[node name="Marker2D-1" type="Marker2D" parent="Enemy_base"]
+position = Vector2(96, 0)
+
+[node name="Marker2D-2" type="Marker2D" parent="Enemy_base"]
+position = Vector2(96, -128)
+
+[node name="Marker2D-3" type="Marker2D" parent="Enemy_base"]
+position = Vector2(320, -128)
+
+[node name="Marker2D-4" type="Marker2D" parent="Enemy_base"]
+position = Vector2(320, 160)
+
+[node name="Marker2D-5" type="Marker2D" parent="Enemy_base"]
+position = Vector2(128, 160)
+
+[node name="Marker2D-6" type="Marker2D" parent="Enemy_base"]
+position = Vector2(128, 64)
+
+[node name="Marker2D-7" type="Marker2D" parent="Enemy_base"]
+position = Vector2(0, 64)
+
+[node name="Enemy_base2" parent="." instance=ExtResource("3_l8ykf")]
+position = Vector2(640, 288)

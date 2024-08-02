@@ -75,12 +75,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_fsl5d"]
 radius = 8.0
 
-[node name="Enemy_base" type="CharacterBody2D" node_paths=PackedStringArray("original_position_a", "original_position_b")]
+[node name="Enemy_base" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_qxuii")
-original_position_a = NodePath("Marker2D-a")
-original_position_b = NodePath("Marker2D-b")
+markersNodes = Array[NodePath]([NodePath("PathOrigin")])
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h1n33")
@@ -93,8 +92,4 @@ offset = Vector2(0, -32)
 position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_fsl5d")
 
-[node name="Marker2D-a" type="Marker2D" parent="."]
-position = Vector2(-96, 0)
-
-[node name="Marker2D-b" type="Marker2D" parent="."]
-position = Vector2(96, 0)
+[node name="PathOrigin" type="Marker2D" parent="."]

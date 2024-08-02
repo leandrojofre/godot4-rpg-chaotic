@@ -23,9 +23,10 @@ func _physics_process(_delta):
 	step_x = input_direction_x * speed
 	step_y = input_direction_y * speed
 	
-	if input_direction_x >= 0:
+	if input_direction_x > 0:
 		animations.flip_h = false
-	else: animations.flip_h = true
+	elif input_direction_x < 0:
+		animations.flip_h = true
 	
 	select_player_animation()
 	
