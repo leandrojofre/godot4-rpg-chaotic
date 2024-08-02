@@ -1,13 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://b4dmjuknaxkxs"]
+[gd_scene load_steps=4 format=3 uid="uid://b4dmjuknaxkxs"]
 
-[ext_resource type="PackedScene" uid="uid://dnmmlpglt0gwy" path="res://scenes/characters/Player.tscn" id="1_405un"]
-[ext_resource type="PackedScene" uid="uid://mteiecl10116" path="res://scenes/rooms/Room_base.tscn" id="2_8i2f0"]
+[ext_resource type="PackedScene" uid="uid://dnmmlpglt0gwy" path="res://scenes/characters/player.tscn" id="1_a5hdv"]
+[ext_resource type="PackedScene" uid="uid://mteiecl10116" path="res://scenes/rooms/_room_base.tscn" id="2_ijx2x"]
+[ext_resource type="PackedScene" uid="uid://tifbejx5dytm" path="res://scenes/characters/enemies/_base.tscn" id="3_l8ykf"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_405un")]
-position = Vector2(160, 160)
+[node name="Player" parent="." instance=ExtResource("1_a5hdv")]
+position = Vector2(800, 192)
 collision_mask = 3
 
-[node name="Room_base" parent="." instance=ExtResource("2_8i2f0")]
+[node name="Room_base" parent="." instance=ExtResource("2_ijx2x")]
+
+[node name="Enemy_base" parent="." instance=ExtResource("3_l8ykf")]
+position = Vector2(736, 256)

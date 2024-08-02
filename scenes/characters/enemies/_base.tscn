@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://tifbejx5dytm"]
+
+[ext_resource type="Script" path="res://scripts/characters/enemies/_base.gd" id="1_qxuii"]
+[ext_resource type="Texture2D" uid="uid://bxpejyusrid86" path="res://assets/characters/_enemy_base.png" id="1_rmdys"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3fvo1"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf2kc"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43fuv"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg257"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_784j6"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0tmg"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4kkxf"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ya5e"]
+atlas = ExtResource("1_rmdys")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1n33"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3fvo1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf2kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43fuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg257")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_784j6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0tmg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4kkxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ya5e")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsl5d"]
+radius = 8.0
+
+[node name="Enemy_base" type="CharacterBody2D" node_paths=PackedStringArray("original_position_a", "original_position_b")]
+z_index = 1
+y_sort_enabled = true
+script = ExtResource("1_qxuii")
+original_position_a = NodePath("Marker2D-a")
+original_position_b = NodePath("Marker2D-b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h1n33")
+animation = &"walk"
+autoplay = "idle"
+frame_progress = 0.878185
+offset = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_fsl5d")
+
+[node name="Marker2D-a" type="Marker2D" parent="."]
+position = Vector2(-96, 0)
+
+[node name="Marker2D-b" type="Marker2D" parent="."]
+position = Vector2(96, 0)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsc5falxbxye3"
-path="res://.godot/imported/tileset_bounds.png-c412e41cc7b4f668a1840ac19d74fdf4.ctex"
+uid="uid://bxpejyusrid86"
+path="res://.godot/imported/_enemy_base.png-e5a12453acbfcb6bc94f6be378997a53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/rooms/tileset_bounds.png"
-dest_files=["res://.godot/imported/tileset_bounds.png-c412e41cc7b4f668a1840ac19d74fdf4.ctex"]
+source_file="res://assets/characters/_enemy_base.png"
+dest_files=["res://.godot/imported/_enemy_base.png-e5a12453acbfcb6bc94f6be378997a53.ctex"]
 
 [params]
 
