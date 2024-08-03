@@ -16,7 +16,6 @@ collision_mask = 3
 [node name="Enemy_base" parent="." instance=ExtResource("3_l8ykf")]
 position = Vector2(736, 224)
 markersNodes = Array[NodePath]([NodePath("PathOrigin"), NodePath("Marker2D-1"), NodePath("Marker2D-2"), NodePath("Marker2D-3"), NodePath("Marker2D-4"), NodePath("Marker2D-5"), NodePath("Marker2D-6"), NodePath("Marker2D-7")])
-loop_in_circles = true
 
 [node name="Marker2D-1" type="Marker2D" parent="Enemy_base"]
 position = Vector2(96, 0)

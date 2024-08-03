@@ -80,6 +80,7 @@ z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_qxuii")
 markersNodes = Array[NodePath]([NodePath("PathOrigin")])
+loop_in_circles = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h1n33")

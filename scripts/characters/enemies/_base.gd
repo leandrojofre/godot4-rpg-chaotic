@@ -18,7 +18,7 @@ func _ready():
 		markers.append(get_node(markersNodes[i]).global_position)
 	
 	position_target = markers[currentMarkerTarget]
-	
+
 func swapCurrentMarker():
 	var top_limit_reached = (currentMarkerTarget + swapingTargetDirection == markers.size())
 	var bottom_limit_reached = (currentMarkerTarget + swapingTargetDirection < 0)
@@ -31,14 +31,13 @@ func swapCurrentMarker():
 	currentMarkerTarget += swapingTargetDirection
 	
 	return currentMarkerTarget
-	
+
 func change_direction():
 	if markers.size() == 1: return
 	if not position.distance_to(position_target) <= step_length: return
-		
-	if position_target == markers[currentMarkerTarget]:
-		position_target = markers[swapCurrentMarker()]
 	
+	position_target = markers[swapCurrentMarker()]
+
 func select_animation():
 	if velocity_direction.length() == 0:
 		animations.play("idle")
@@ -56,7 +55,7 @@ func _physics_process(_delta):
 	if position.distance_to(position_target) <= step_length:
 		position = position_target
 	
-	velocity_direction = position.direction_to(position_target).snapped(Vector2(0.1, 0.1))
+	velocity_direction = position.direction_to(position_target).limit_length().snapped(Vector2(0.1, 0.1))
 	velocity_direction *= speed
 	velocity = velocity_direction
 	
