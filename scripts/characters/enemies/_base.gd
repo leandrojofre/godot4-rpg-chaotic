@@ -18,6 +18,7 @@ func _ready():
 		markers.append(get_node(markersNodes[i]).global_position)
 	
 	position_target = markers[currentMarkerTarget]
+	set_motion_mode(CharacterBody2D.MOTION_MODE_FLOATING)
 
 func swapCurrentMarker():
 	var top_limit_reached = (currentMarkerTarget + swapingTargetDirection == markers.size())

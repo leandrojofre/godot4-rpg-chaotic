@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dnmmlpglt0gwy"]
+[gd_scene load_steps=11 format=3 uid="uid://dnmmlpglt0gwy"]
 
 [ext_resource type="Script" path="res://scripts/characters/player/player.gd" id="1_ab3oa"]
 [ext_resource type="Texture2D" uid="uid://bcgj8hy56cle8" path="res://assets/characters/_base.png" id="1_ok42r"]
@@ -59,10 +59,14 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_4vsvi"]
 radius = 8.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_lfu1v"]
+radius = 16.0
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
 y_sort_enabled = true
 texture_filter = 1
+collision_mask = 3
 script = ExtResource("1_ab3oa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -78,3 +82,13 @@ shape = SubResource("CircleShape2D_4vsvi")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -32)
 zoom = Vector2(2, 2)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -8)
+shape = SubResource("CircleShape2D_lfu1v")
+
+[connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
