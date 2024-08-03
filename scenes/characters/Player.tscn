@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dnmmlpglt0gwy"]
+[gd_scene load_steps=12 format=3 uid="uid://dnmmlpglt0gwy"]
 
 [ext_resource type="Script" path="res://scripts/characters/player/player.gd" id="1_ab3oa"]
 [ext_resource type="Texture2D" uid="uid://bcgj8hy56cle8" path="res://assets/characters/_base.png" id="1_ok42r"]
+[ext_resource type="PackedScene" uid="uid://bfgs11morpot2" path="res://scenes/gui/gameplay_info/health_bar.tscn" id="3_qhcwp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_634xb"]
 atlas = ExtResource("1_ok42r")
@@ -68,6 +69,7 @@ y_sort_enabled = true
 texture_filter = 1
 collision_mask = 3
 script = ExtResource("1_ab3oa")
+max_health = 10
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_61tbp")
@@ -82,6 +84,12 @@ shape = SubResource("CircleShape2D_4vsvi")
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -32)
 zoom = Vector2(2, 2)
+
+[node name="HealthBar" parent="Camera2D" instance=ExtResource("3_qhcwp")]
+offset_left = -280.0
+offset_top = -184.0
+offset_right = -160.0
+offset_bottom = -168.0
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 0

@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4lw3q4x81byv"]
+
+[ext_resource type="Texture2D" uid="uid://j14r4dq7e51n" path="res://assets/gui/gameplay_info/health_icon.png" id="1_yo5dl"]
+
+[node name="HealthIcon" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(24, 16)
+offset_right = 24.0
+offset_bottom = 16.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yo5dl")
+centered = false
+hframes = 3

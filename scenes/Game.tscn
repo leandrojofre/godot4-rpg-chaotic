@@ -8,7 +8,7 @@
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_a5hdv")]
-position = Vector2(800, 192)
+position = Vector2(816, 592)
 
 [node name="Room_base" parent="." instance=ExtResource("2_ijx2x")]
 
