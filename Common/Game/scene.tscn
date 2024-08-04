@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4dmjuknaxkxs"]
 
-[ext_resource type="PackedScene" uid="uid://dnmmlpglt0gwy" path="res://scenes/characters/player.tscn" id="1_a5hdv"]
-[ext_resource type="PackedScene" uid="uid://mteiecl10116" path="res://scenes/rooms/_room_base.tscn" id="2_ijx2x"]
-[ext_resource type="PackedScene" uid="uid://tifbejx5dytm" path="res://scenes/characters/enemies/_base.tscn" id="3_l8ykf"]
+[ext_resource type="PackedScene" uid="uid://dnmmlpglt0gwy" path="res://Characters/Player/_prototype/scene.tscn" id="1_g84yr"]
+[ext_resource type="PackedScene" uid="uid://mteiecl10116" path="res://Rooms/_prototype/scene.tscn" id="2_qai0g"]
+[ext_resource type="PackedScene" uid="uid://tifbejx5dytm" path="res://Characters/Enemies/_base/scene.tscn" id="3_i7tu8"]
 
 [node name="Game" type="Node2D"]
 y_sort_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("1_a5hdv")]
+[node name="Player" parent="." instance=ExtResource("1_g84yr")]
 position = Vector2(816, 592)
 
-[node name="Room_base" parent="." instance=ExtResource("2_ijx2x")]
+[node name="Room_base" parent="." instance=ExtResource("2_qai0g")]
 
-[node name="Enemy_base0" parent="." instance=ExtResource("3_l8ykf")]
+[node name="Enemy_base0" parent="." instance=ExtResource("3_i7tu8")]
 position = Vector2(736, 224)
 markersNodes = Array[NodePath]([NodePath("PathOrigin"), NodePath("Marker2D-1"), NodePath("Marker2D-2"), NodePath("Marker2D-3"), NodePath("Marker2D-4"), NodePath("Marker2D-5"), NodePath("Marker2D-6"), NodePath("Marker2D-7")])
 
@@ -37,14 +37,14 @@ position = Vector2(128, 64)
 [node name="Marker2D-7" type="Marker2D" parent="Enemy_base0"]
 position = Vector2(0, 64)
 
-[node name="Enemy_base1" parent="." instance=ExtResource("3_l8ykf")]
+[node name="Enemy_base1" parent="." instance=ExtResource("3_i7tu8")]
 position = Vector2(640, 288)
 markersNodes = Array[NodePath]([NodePath("PathOrigin"), NodePath("Marker2D-1")])
 
 [node name="Marker2D-1" type="Marker2D" parent="Enemy_base1"]
 position = Vector2(0, 96)
 
-[node name="Enemy_base2" parent="." instance=ExtResource("3_l8ykf")]
+[node name="Enemy_base2" parent="." instance=ExtResource("3_i7tu8")]
 position = Vector2(160, 176)
 markersNodes = Array[NodePath]([NodePath("PathOrigin"), NodePath("Marker2D-1"), NodePath("Marker2D-2"), NodePath("Marker2D-3")])
 loop_in_circles = false
@@ -58,5 +58,5 @@ position = Vector2(304, 96)
 [node name="Marker2D-3" type="Marker2D" parent="Enemy_base2"]
 position = Vector2(400, 96)
 
-[node name="Enemy_base4" parent="." instance=ExtResource("3_l8ykf")]
+[node name="Enemy_base4" parent="." instance=ExtResource("3_i7tu8")]
 position = Vector2(640, 112)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://mteiecl10116"]
 
-[ext_resource type="Texture2D" uid="uid://dd73ect56nls6" path="res://assets/rooms/tileset_default.png" id="1_3p3ob"]
+[ext_resource type="Texture2D" uid="uid://dd73ect56nls6" path="res://Rooms/_prototype/tileset.png" id="1_3p3ob"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gudcb"]
 tile_data = PackedInt32Array(0, 65537, 1, 65536, 131073, 268435457, 1, 131073, 1, 65537, 65537, 268435457)

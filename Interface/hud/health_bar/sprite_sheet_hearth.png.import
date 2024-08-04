@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://j14r4dq7e51n"
-path="res://.godot/imported/health_icon.png-2eeb245ab6d3f49b6eb53a50349a5ddb.ctex"
+path="res://.godot/imported/sprite_sheet_hearth.png-286c113768258faf5c16379dd92cd85f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gui/gameplay_info/health_icon.png"
-dest_files=["res://.godot/imported/health_icon.png-2eeb245ab6d3f49b6eb53a50349a5ddb.ctex"]
+source_file="res://Interface/hud/health_bar/sprite_sheet_hearth.png"
+dest_files=["res://.godot/imported/sprite_sheet_hearth.png-286c113768258faf5c16379dd92cd85f.ctex"]
 
 [params]
 

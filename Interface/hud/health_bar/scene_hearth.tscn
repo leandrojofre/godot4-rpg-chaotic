@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b4lw3q4x81byv"]
 
-[ext_resource type="Texture2D" uid="uid://j14r4dq7e51n" path="res://assets/gui/gameplay_info/health_icon.png" id="1_yo5dl"]
+[ext_resource type="Texture2D" uid="uid://j14r4dq7e51n" path="res://Interface/hud/health_bar/sprite_sheet_hearth.png" id="1_sfk5w"]
 
 [node name="HealthIcon" type="Panel"]
 self_modulate = Color(1, 1, 1, 0)
@@ -9,6 +9,6 @@ offset_right = 24.0
 offset_bottom = 16.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_yo5dl")
+texture = ExtResource("1_sfk5w")
 centered = false
 hframes = 3
