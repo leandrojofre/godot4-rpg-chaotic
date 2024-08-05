@@ -4,11 +4,11 @@ extends CharacterBody2D
 @export var markersNodes: Array[NodePath]
 @export var loop_in_circles: bool
 
-@onready var animations = $AnimatedSprite2D
+@onready var Animations = $AnimatedSprite2D
 
 var step_length = 0
-var currentMarkerTarget = 0
-var swapingTargetDirection = 1
+var current_marker_target = 0
+var swaping_target_direction = 1
 var position_target
 var velocity_direction = Vector2(0, 0)
 var markers: Array[Vector2]
@@ -17,37 +17,37 @@ func _ready():
 	for i in range(markersNodes.size()):
 		markers.append(get_node(markersNodes[i]).global_position)
 	
-	position_target = markers[currentMarkerTarget]
+	position_target = markers[current_marker_target]
 	set_motion_mode(CharacterBody2D.MOTION_MODE_FLOATING)
 
-func swapCurrentMarker():
-	var top_limit_reached = (currentMarkerTarget + swapingTargetDirection == markers.size())
-	var bottom_limit_reached = (currentMarkerTarget + swapingTargetDirection < 0)
+func swap_current_marker():
+	var topLimitReached = (current_marker_target + swaping_target_direction == markers.size())
+	var bottomLimitReached = (current_marker_target + swaping_target_direction < 0)
 	
-	if (top_limit_reached or bottom_limit_reached) and not loop_in_circles:
-		swapingTargetDirection *= -1
-	elif top_limit_reached and loop_in_circles:
-		currentMarkerTarget = -1
+	if (topLimitReached or bottomLimitReached) and not loop_in_circles:
+		swaping_target_direction *= -1
+	elif topLimitReached and loop_in_circles:
+		current_marker_target = -1
 		
-	currentMarkerTarget += swapingTargetDirection
+	current_marker_target += swaping_target_direction
 	
-	return currentMarkerTarget
+	return current_marker_target
 
 func change_direction():
 	if markers.size() == 1: return
 	if not position.distance_to(position_target) <= step_length: return
 	
-	position_target = markers[swapCurrentMarker()]
+	position_target = markers[swap_current_marker()]
 
 func select_animation():
 	if velocity_direction.length() == 0:
-		animations.play("idle")
-	else: animations.play("walk")
+		Animations.play("idle")
+	else: Animations.play("walk")
 		
 	if velocity_direction.x > 0:
-		animations.flip_h = false
+		Animations.flip_h = false
 	elif velocity_direction.x < 0:
-		animations.flip_h = true
+		Animations.flip_h = true
 
 func _physics_process(_delta):
 	change_direction()
@@ -60,8 +60,8 @@ func _physics_process(_delta):
 	velocity_direction *= speed
 	velocity = velocity_direction
 	
-	var pre_position = position
+	var prePosition = position
 	move_and_slide()
-	var pos_position = position
+	var posPosition = position
 	
-	step_length = pre_position.distance_to(pos_position)
+	step_length = prePosition.distance_to(posPosition)

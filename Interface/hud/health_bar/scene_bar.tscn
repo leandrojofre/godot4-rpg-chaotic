@@ -1,6 +1,10 @@
-[gd_scene format=3 uid="uid://bfgs11morpot2"]
+[gd_scene load_steps=2 format=3 uid="uid://bfgs11morpot2"]
+
+[ext_resource type="Script" path="res://Interface/hud/health_bar/script_bar.gd" id="1_oy0my"]
 
 [node name="HealthBar" type="HBoxContainer"]
-offset_right = 120.0
-offset_bottom = 16.0
+layout_direction = 3
+offset_left = 1152.0
+offset_right = 1152.0
 theme_override_constants/separation = 1
+script = ExtResource("1_oy0my")
