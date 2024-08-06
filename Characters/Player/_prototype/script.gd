@@ -72,7 +72,13 @@ func _on_hit_box_area_entered(area):
 		ImmunityTimer.start()
 		
 		VisualEffects.play("take-damage")
-		await ImmunityTimer.timeout
-		VisualEffects.play("RESET")
-		
-		if HitBox.overlaps_area(area): _on_hit_box_area_entered(area)
+
+func _on_immunity_timer_timeout():
+	VisualEffects.play("RESET")
+	
+	var collisions = HitBox.get_overlapping_areas()
+	
+	collisions.filter(func(area): return area.name == "HitBox")
+	
+	for collision in collisions:
+		if HitBox.overlaps_area(collision): return _on_hit_box_area_entered(collision)

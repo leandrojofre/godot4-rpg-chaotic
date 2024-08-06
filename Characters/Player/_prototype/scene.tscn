@@ -159,3 +159,4 @@ libraries = {
 one_shot = true
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="timeout" from="ImmunityTimer" to="." method="_on_immunity_timer_timeout"]
