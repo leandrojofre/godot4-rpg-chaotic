@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var speed = 240
 @export var run_multiplier = 2.0
 @export var max_health: int = 5
+@export var knockback_force = 580
 
 @onready var Animations = $AnimatedSprite2D
 @onready var HealthBar = $Camera2D/HealthBar
@@ -43,6 +44,16 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 
+func knockback(threat_position: Vector2):
+	var knockbackDirection = threat_position.direction_to(position)
+	
+	knockbackDirection = knockbackDirection.limit_length().snapped(Vector2(0.1, 0.1))
+	knockbackDirection *= knockback_force
+	
+	velocity = knockbackDirection
+	
+	move_and_slide()
+
 func _on_hit_box_area_entered(area):
 	if area.name == "HitBox":
 		current_health -= 1
@@ -53,3 +64,4 @@ func _on_hit_box_area_entered(area):
 			HealthBar.set_max_health(max_health)
 		
 		HealthBar.update_health(current_health)
+		knockback(area.get_parent().position)
