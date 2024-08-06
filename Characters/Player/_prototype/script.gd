@@ -7,6 +7,9 @@ extends CharacterBody2D
 
 @onready var Animations = $AnimatedSprite2D
 @onready var HealthBar = $Camera2D/HealthBar
+@onready var VisualEffects = $VisualEffects
+@onready var ImmunityTimer = $ImmunityTimer
+@onready var HitBox = $HitBox
 
 var velocity_direction
 var current_health: int
@@ -55,7 +58,7 @@ func knockback(threat_position: Vector2):
 	move_and_slide()
 
 func _on_hit_box_area_entered(area):
-	if area.name == "HitBox":
+	if area.name == "HitBox" and ImmunityTimer.is_stopped():
 		current_health -= 1
 		print("HP-1 / Total: ", current_health)
 		
@@ -64,4 +67,12 @@ func _on_hit_box_area_entered(area):
 			HealthBar.set_max_health(max_health)
 		
 		HealthBar.update_health(current_health)
+		
 		knockback(area.get_parent().position)
+		ImmunityTimer.start()
+		
+		VisualEffects.play("take-damage")
+		await ImmunityTimer.timeout
+		VisualEffects.play("RESET")
+		
+		if HitBox.overlaps_area(area): _on_hit_box_area_entered(area)
