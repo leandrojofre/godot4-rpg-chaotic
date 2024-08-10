@@ -22,19 +22,20 @@ func set_max_health(max_health: int):
 		var heart = SceneHeart.instantiate()
 		add_child(heart)
 
-func update_health(parent_health: int):
-	var hearts = get_children()
-	var healthPoints: int = get_health_points(hearts)
-	var healthCorrection = healthPoints - parent_health
-	
-	if healthCorrection < 0:
-		print("ERROR: Health correction has a negative value: ", healthCorrection)
-		print("-healthPoints: ", healthPoints)
-		print("-parent_health: ", parent_health)
-		return
-	
+func modify_hearts(hearts: Array[Node], health_correction: int, points_to_skip: String):	
 	for heart in hearts:
-		if healthCorrection == 0: break
-		if heart.is_heart_empty(): continue
+		if health_correction == 0: return
+		if heart.check_health_points(heart[points_to_skip]): continue
 		
-		healthCorrection = heart.update_sprite(healthCorrection)
+		health_correction = heart.update_sprite(health_correction)
+
+func update_health(parent_health: int):
+	var hearts: Array[Node] = get_children()
+	var healthPoints: int = get_health_points(hearts)
+	var healthCorrection: int = healthPoints - parent_health
+	
+	if healthCorrection > 0:
+		modify_hearts(hearts, healthCorrection, "max_frame")
+	if healthCorrection < 0:
+		hearts.reverse()
+		modify_hearts(hearts, healthCorrection, "min_frame")

@@ -26,7 +26,7 @@ func select_animation():
 	elif velocity_direction.x < 0:
 		Animations.flip_h = true
 	
-	if Input.is_action_pressed("run"):
+	if Input.is_action_pressed("run") and Input.is_action_pressed("key-down"):
 		Animations.play("run")
 		velocity_direction *= run_multiplier
 	elif Input.is_action_pressed("key-down"):
@@ -47,6 +47,18 @@ func _physics_process(_delta):
 	
 	move_and_slide()
 
+func update_health(health_correction: int):
+	current_health += health_correction
+	
+	if current_health <= 0:
+		current_health = max_health
+		HealthBar.set_max_health(max_health)
+	if current_health > max_health:
+		current_health = max_health
+		HealthBar.set_max_health(max_health)
+		
+	HealthBar.update_health(current_health)
+
 func knockback(threat_position: Vector2):
 	var knockbackDirection = threat_position.direction_to(position)
 	
@@ -57,21 +69,20 @@ func knockback(threat_position: Vector2):
 	
 	move_and_slide()
 
+func take_damage(area: Area2D):
+	if not ImmunityTimer.is_stopped(): return
+	
+	var enemy = area.get_parent()
+	
+	update_health(enemy.get_damage())
+	knockback(enemy.position)
+	
+	ImmunityTimer.start()
+	VisualEffects.play("take-damage")
+
 func _on_hit_box_area_entered(area):
-	if area.name == "HitBox" and ImmunityTimer.is_stopped():
-		current_health -= 1
-		print("HP-1 / Total: ", current_health)
-		
-		if current_health <= 0:
-			current_health = max_health
-			HealthBar.set_max_health(max_health)
-		
-		HealthBar.update_health(current_health)
-		
-		knockback(area.get_parent().position)
-		ImmunityTimer.start()
-		
-		VisualEffects.play("take-damage")
+	if area.name == "HitBox": take_damage(area)
+	if area.has_method("collect"): area.collect(self)
 
 func _on_immunity_timer_timeout():
 	VisualEffects.play("RESET")

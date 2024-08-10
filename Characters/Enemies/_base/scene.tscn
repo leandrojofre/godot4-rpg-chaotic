@@ -1,7 +1,80 @@
 [gd_scene load_steps=15 format=3 uid="uid://tifbejx5dytm"]
 
-[ext_resource type="Script" path="res://Characters/Enemies/_base/script.gd" id="1_qxuii"]
 [ext_resource type="Texture2D" uid="uid://bxpejyusrid86" path="res://Characters/Enemies/_base/sprite_sheet.png" id="1_rmdys"]
+
+[sub_resource type="GDScript" id="GDScript_0qxyj"]
+script/source = "extends CharacterBody2D
+
+@export var speed = 120
+@export var markersNodes: Array[NodePath]
+@export var loop_in_circles: bool = true
+@export var damage: int = 1
+
+@onready var Animations = $AnimatedSprite2D
+
+var step_length = 0
+var current_marker_target = 0
+var swaping_target_direction = 1
+var position_target
+var velocity_direction = Vector2(0, 0)
+var markers: Array[Vector2]
+
+func _ready():
+	for i in range(markersNodes.size()):
+		markers.append(get_node(markersNodes[i]).global_position)
+	
+	position_target = markers[current_marker_target]
+	set_motion_mode(CharacterBody2D.MOTION_MODE_FLOATING)
+
+func get_damage() -> int:
+	return damage * -1
+
+func swap_current_marker():
+	var topLimitReached = (current_marker_target + swaping_target_direction == markers.size())
+	var bottomLimitReached = (current_marker_target + swaping_target_direction < 0)
+	
+	if (topLimitReached or bottomLimitReached) and not loop_in_circles:
+		swaping_target_direction *= -1
+	elif topLimitReached and loop_in_circles:
+		current_marker_target = -1
+		
+	current_marker_target += swaping_target_direction
+	
+	return current_marker_target
+
+func change_direction():
+	if markers.size() == 1: return
+	if not position.distance_to(position_target) <= step_length: return
+	
+	position_target = markers[swap_current_marker()]
+
+func select_animation():
+	if velocity_direction.length() == 0:
+		Animations.play(\"idle\")
+	else: Animations.play(\"walk\")
+		
+	if velocity_direction.x > 0:
+		Animations.flip_h = false
+	elif velocity_direction.x < 0:
+		Animations.flip_h = true
+
+func _physics_process(_delta):
+	change_direction()
+	select_animation()
+	
+	if position.distance_to(position_target) <= step_length:
+		position = position_target
+	
+	velocity_direction = position.direction_to(position_target).limit_length().snapped(Vector2(0.1, 0.1))
+	velocity_direction *= speed
+	velocity = velocity_direction
+	
+	var prePosition = position
+	move_and_slide()
+	var posPosition = position
+	
+	step_length = prePosition.distance_to(posPosition)
+"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rd4yr"]
 radius = 8.0
@@ -87,9 +160,9 @@ z_index = 1
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_qxuii")
+motion_mode = 1
+script = SubResource("GDScript_0qxyj")
 markersNodes = Array[NodePath]([NodePath("PathOrigin")])
-loop_in_circles = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -107,6 +180,7 @@ offset = Vector2(0, -32)
 
 [node name="TriggerZone" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerZone"]
 position = Vector2(0, -8)

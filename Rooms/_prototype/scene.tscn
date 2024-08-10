@@ -1,12 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://mteiecl10116"]
+[gd_scene load_steps=8 format=3 uid="uid://mteiecl10116"]
 
 [ext_resource type="Texture2D" uid="uid://dd73ect56nls6" path="res://Rooms/_prototype/tileset.png" id="1_3p3ob"]
+[ext_resource type="PackedScene" uid="uid://dqgmwcbdkiw87" path="res://Collectables/_prototype-HolyHealing/scene.tscn" id="1_kv512"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_gudcb"]
 tile_data = PackedInt32Array(0, 65537, 1, 65536, 131073, 268435457, 1, 131073, 1, 65537, 65537, 268435457)
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_uwry3"]
 tile_data = PackedInt32Array(65536, 196609, 1, 2, 327681, 1)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_cpus8"]
+resource_name = "collectable"
+scenes/1/scene = ExtResource("1_kv512")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jhyum"]
 texture = ExtResource("1_3p3ob")
@@ -53,6 +58,7 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 3
 physics_layer_0/collision_mask = 3
 sources/1 = SubResource("TileSetAtlasSource_jhyum")
+sources/0 = SubResource("TileSetScenesCollectionSource_cpus8")
 pattern_0 = SubResource("TileMapPattern_gudcb")
 pattern_1 = SubResource("TileMapPattern_uwry3")
 
@@ -70,3 +76,5 @@ layer_1/name = "rocks"
 layer_1/y_sort_enabled = true
 layer_1/z_index = 1
 layer_1/tile_data = PackedInt32Array(720912, 131073, 0, 720914, 262145, 0, 655390, 131073, 268435456, 262167, 131073, 268435456, 262166, 262145, 268435456, 655389, 262145, 268435456, 393233, 327681, 0, 786455, 327681, 268435456, 393246, 327681, 268435456)
+layer_2/name = "collectables"
+layer_2/tile_data = PackedInt32Array(131079, 0, 65536, 458759, 0, 65536, 458754, 0, 65536, 131074, 0, 65536, 131086, 0, 65536, 524317, 0, 65536)

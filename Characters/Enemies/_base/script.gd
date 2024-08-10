@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 @export var speed = 120
 @export var markersNodes: Array[NodePath]
-@export var loop_in_circles: bool
+@export var loop_in_circles: bool = true
+@export var damage: int = 2
 
 @onready var Animations = $AnimatedSprite2D
 
@@ -19,6 +20,9 @@ func _ready():
 	
 	position_target = markers[current_marker_target]
 	set_motion_mode(CharacterBody2D.MOTION_MODE_FLOATING)
+
+func get_damage() -> int:
+	return damage * -1
 
 func swap_current_marker():
 	var topLimitReached = (current_marker_target + swaping_target_direction == markers.size())
